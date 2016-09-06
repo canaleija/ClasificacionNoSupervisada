@@ -11,19 +11,28 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JSlider;
 import umbralizacionrgb.Histograma;
+import umbralizacionrgb.UmbralizarImagen;
 
 /**
  *
  * @author Roberto Cruz Leija
  */
 public class Principal extends javax.swing.JFrame {
-BufferedImage imagenOriginal;
+    BufferedImage imagenOriginal;
+    UmbralizarImagen umbralizador;
+    boolean jchbAuxRed,jchbAuxGreen,jchbAuxBlue;
+    int jsAuxRed1,jsAuxRed2,jsAuxGreen1,jsAuxGreen2,jsAuxBlue1,jsAuxBlue2;
+    
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        this.imagenOriginal = null;
+        this.umbralizador = null;
     }
 
     /**
@@ -37,15 +46,15 @@ BufferedImage imagenOriginal;
 
         jPanel1 = new javax.swing.JPanel();
         jLabelImagen = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jSlider1 = new javax.swing.JSlider();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jSlider2 = new javax.swing.JSlider();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jSlider4 = new javax.swing.JSlider();
-        jSlider5 = new javax.swing.JSlider();
-        jSlider6 = new javax.swing.JSlider();
-        jSlider7 = new javax.swing.JSlider();
+        jCheckBoxRed = new javax.swing.JCheckBox();
+        jSliderRed1 = new javax.swing.JSlider();
+        jCheckBoxGreen = new javax.swing.JCheckBox();
+        jSlideRed2 = new javax.swing.JSlider();
+        jCheckBoxBlue = new javax.swing.JCheckBox();
+        jSlideGreen1 = new javax.swing.JSlider();
+        jSliderGreen2 = new javax.swing.JSlider();
+        jSliderBlue1 = new javax.swing.JSlider();
+        jSliderBlue2 = new javax.swing.JSlider();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -69,37 +78,37 @@ BufferedImage imagenOriginal;
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jCheckBox1.setText("Inside Red ");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxRed.setText("Inside Red ");
+        jCheckBoxRed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                jCheckBoxRedActionPerformed(evt);
             }
         });
 
-        jSlider1.setMaximum(255);
-        jSlider1.setPaintLabels(true);
-        jSlider1.setValue(30);
+        jSliderRed1.setMaximum(255);
+        jSliderRed1.setPaintLabels(true);
+        jSliderRed1.setValue(30);
 
-        jCheckBox2.setText("Inside Green");
+        jCheckBoxGreen.setText("Inside Green");
 
-        jSlider2.setMaximum(255);
-        jSlider2.setValue(230);
+        jSlideRed2.setMaximum(255);
+        jSlideRed2.setValue(230);
 
-        jCheckBox3.setText("Inside Blue");
+        jCheckBoxBlue.setText("Inside Blue");
 
-        jSlider4.setMaximum(255);
-        jSlider4.setPaintLabels(true);
-        jSlider4.setValue(30);
+        jSlideGreen1.setMaximum(255);
+        jSlideGreen1.setPaintLabels(true);
+        jSlideGreen1.setValue(30);
 
-        jSlider5.setMaximum(255);
-        jSlider5.setValue(230);
+        jSliderGreen2.setMaximum(255);
+        jSliderGreen2.setValue(230);
 
-        jSlider6.setMaximum(255);
-        jSlider6.setPaintLabels(true);
-        jSlider6.setValue(30);
+        jSliderBlue1.setMaximum(255);
+        jSliderBlue1.setPaintLabels(true);
+        jSliderBlue1.setValue(30);
 
-        jSlider7.setMaximum(255);
-        jSlider7.setValue(230);
+        jSliderBlue2.setMaximum(255);
+        jSliderBlue2.setValue(230);
 
         jButton1.setText("Abrir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +136,7 @@ BufferedImage imagenOriginal;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jCheckBox2)
+                                .addComponent(jCheckBoxGreen)
                                 .addGap(146, 146, 146))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton1)
@@ -140,20 +149,20 @@ BufferedImage imagenOriginal;
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(153, 153, 153)
-                                        .addComponent(jCheckBox1))
+                                        .addComponent(jCheckBoxRed))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(158, 158, 158)
-                                        .addComponent(jCheckBox3)))
+                                        .addComponent(jCheckBoxBlue)))
                                 .addGap(0, 143, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSlider4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSlider5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSlider6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSlider7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jSliderRed1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSlideRed2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSlideGreen1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSliderGreen2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSliderBlue1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSliderBlue2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -164,23 +173,23 @@ BufferedImage imagenOriginal;
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jCheckBox1)
+                .addComponent(jCheckBoxRed)
                 .addGap(18, 18, 18)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSliderRed1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSlideRed2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jCheckBox2)
+                .addComponent(jCheckBoxGreen)
                 .addGap(18, 18, 18)
-                .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSlideGreen1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSlider5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSliderGreen2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jCheckBox3)
+                .addComponent(jCheckBoxBlue)
                 .addGap(18, 18, 18)
-                .addComponent(jSlider6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSliderBlue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSlider7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSliderBlue2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -191,29 +200,62 @@ BufferedImage imagenOriginal;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    private void jCheckBoxRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxRedActionPerformed
+        
+    }//GEN-LAST:event_jCheckBoxRedActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            // generamos la imagen original 
             imagenOriginal = AbrirImagen.abrirImagen();
+            // mandamos la referencia de la imagen original
+            Histograma.imagen = this.imagenOriginal; 
+            
             this.jLabelImagen.setIcon(new ImageIcon(imagenOriginal));
-            System.out.println();
+            
+            // calcular histogramas 
+           this.umbralizador = new UmbralizarImagen(imagenOriginal);
+           this.umbralizador.generaFraficoHistograma();
+           // detectamos los estados iniciales de los componentes
+           this.jchbAuxRed = this.jCheckBoxRed.isEnabled();
+           this.jchbAuxGreen = this.jCheckBoxGreen.isEnabled();
+           this.jchbAuxBlue = this.jCheckBoxBlue.isEnabled();
+           this.jsAuxRed1 = this.jSliderRed1.getValue();
+           this.jsAuxRed2 = this.jSlideRed2.getValue();
+           this.jsAuxGreen1 = this.jSlideGreen1.getValue();
+           this.jsAuxGreen2 = this.jSliderGreen2.getValue();
+           this.jsAuxBlue1 = this.jSliderBlue1.getValue();
+           this.jsAuxBlue2 = this.jSliderBlue2.getValue();
+           
+           
+          
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    // calcular histogramas 
-    Histograma.imagen = this.imagenOriginal;    
-    Histograma rojo = new Histograma("Rojo", Histograma.Canal.ROJO);
-    System.out.println(rojo.toString());
-    Histograma verde = new Histograma("Verde", Histograma.Canal.VERDE);
-    Histograma azul = new Histograma("Azul", Histograma.Canal.AZUL);
-    System.out.println();
+     
+     //obtenemos los valores del slider y checkbox
+     // canal rojo
+     
+     if (this.jchbAuxRed !=this.jCheckBoxRed.isEnabled() ||
+             this.jsAuxRed1!=this.jSliderRed1.getValue() ||
+              this.jsAuxRed2 !=this.jSlideRed2.getValue()){
+       this.umbralizador.actualizarRojo(this.jSliderRed1.getValue(), this.jSlideRed2.getValue(),this.jCheckBoxRed.isEnabled());
+        
+     // actualizar la imagen 
+        this.jLabelImagen.setIcon(new ImageIcon(this.umbralizador.getImagenNueva()));
+       // generamos el nuevo grafico 
+       this.umbralizador.generaFraficoHistograma();
+        // actualizar el estado nuevo 
+       this.jchbAuxRed = this.jCheckBoxRed.isEnabled();
+       this.jsAuxRed1 = this.jSliderRed1.getValue();
+       this.jsAuxRed2 = this.jSlideRed2.getValue();
+     }
     
+         
+ 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -254,16 +296,16 @@ BufferedImage imagenOriginal;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBoxBlue;
+    private javax.swing.JCheckBox jCheckBoxGreen;
+    private javax.swing.JCheckBox jCheckBoxRed;
     private javax.swing.JLabel jLabelImagen;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JSlider jSlider4;
-    private javax.swing.JSlider jSlider5;
-    private javax.swing.JSlider jSlider6;
-    private javax.swing.JSlider jSlider7;
+    private javax.swing.JSlider jSlideGreen1;
+    private javax.swing.JSlider jSlideRed2;
+    private javax.swing.JSlider jSliderBlue1;
+    private javax.swing.JSlider jSliderBlue2;
+    private javax.swing.JSlider jSliderGreen2;
+    private javax.swing.JSlider jSliderRed1;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,6 +13,8 @@ import java.awt.image.BufferedImage;
  * @author Roberto Cruz Leija
  */
 public class Histograma {
+
+    
     
     public enum Canal {ROJO,VERDE,AZUL}
     
@@ -40,13 +42,13 @@ public class Histograma {
                      if (v>255){
                      System.out.println(""+x+","+y+","+v+","+valorRGB);
                      }
-                    this.valores[v]++;          
+                     this.getValores()[v]++;          
                     break;}
                  case VERDE:{
-                     this.valores[color.getGreen()]++;  
+                     this.getValores()[color.getGreen()]++;  
                      break;}
                  case AZUL:{
-                     this.valores[color.getBlue()]++;  
+                     this.getValores()[color.getBlue()]++;  
                      break;}
                  default:{this.valores = new int[256];}
                            
@@ -58,17 +60,28 @@ public class Histograma {
     @Override
     public String toString() {
         String aux = "";
-        for (int x=0; x < this.valores.length;x++){
+        for (int x=0; x < this.getValores().length;x++){
          aux+=x+"\n";
         }
         return aux; //To change body of generated methods, choose Tools | Templates.
     }
     
-   
-    public void muestraGraficaHistograma (){
-    
-    // TODO 
+    /**
+     * @return the valores
+     */
+    public int[] getValores() {
+        return valores;
     }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+    
+   
+   
     
     
     

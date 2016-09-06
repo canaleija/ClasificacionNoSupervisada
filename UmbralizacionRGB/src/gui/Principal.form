@@ -31,7 +31,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBoxGreen" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -48,11 +48,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxRed" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBoxBlue" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="143" max="32767" attributes="0"/>
@@ -60,12 +60,12 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jSlider1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jSlider2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jSlider4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jSlider5" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jSlider6" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jSlider7" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jSliderRed1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jSlideRed2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jSlideGreen1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jSliderGreen2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jSliderBlue1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jSliderBlue2" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -84,23 +84,23 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+              <Component id="jCheckBoxRed" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
+              <Component id="jSliderRed1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSlider2" min="-2" max="-2" attributes="0"/>
+              <Component id="jSlideRed2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+              <Component id="jCheckBoxGreen" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jSlider4" min="-2" max="-2" attributes="0"/>
+              <Component id="jSlideGreen1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSlider5" min="-2" max="-2" attributes="0"/>
+              <Component id="jSliderGreen2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
+              <Component id="jCheckBoxBlue" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jSlider6" min="-2" max="-2" attributes="0"/>
+              <Component id="jSliderBlue1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSlider7" min="-2" max="-2" attributes="0"/>
+              <Component id="jSliderBlue2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -145,58 +145,58 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxRed">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inside Red "/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxRedActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JSlider" name="jSlider1">
+    <Component class="javax.swing.JSlider" name="jSliderRed1">
       <Properties>
         <Property name="maximum" type="int" value="255"/>
         <Property name="paintLabels" type="boolean" value="true"/>
         <Property name="value" type="int" value="30"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxGreen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inside Green"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSlider" name="jSlider2">
+    <Component class="javax.swing.JSlider" name="jSlideRed2">
       <Properties>
         <Property name="maximum" type="int" value="255"/>
         <Property name="value" type="int" value="230"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxBlue">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inside Blue"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSlider" name="jSlider4">
+    <Component class="javax.swing.JSlider" name="jSlideGreen1">
       <Properties>
         <Property name="maximum" type="int" value="255"/>
         <Property name="paintLabels" type="boolean" value="true"/>
         <Property name="value" type="int" value="30"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSlider" name="jSlider5">
+    <Component class="javax.swing.JSlider" name="jSliderGreen2">
       <Properties>
         <Property name="maximum" type="int" value="255"/>
         <Property name="value" type="int" value="230"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSlider" name="jSlider6">
+    <Component class="javax.swing.JSlider" name="jSliderBlue1">
       <Properties>
         <Property name="maximum" type="int" value="255"/>
         <Property name="paintLabels" type="boolean" value="true"/>
         <Property name="value" type="int" value="30"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSlider" name="jSlider7">
+    <Component class="javax.swing.JSlider" name="jSliderBlue2">
       <Properties>
         <Property name="maximum" type="int" value="255"/>
         <Property name="value" type="int" value="230"/>
