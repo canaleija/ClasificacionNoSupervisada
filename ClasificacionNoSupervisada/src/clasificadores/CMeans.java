@@ -39,7 +39,38 @@ public class CMeans {
      // agregamos a la coleccion de centroides los centroides iniciales
      this.centroides.add(centroides);
      // etiquetar por primera ocasión (clasificar por primera ocasión)
+     etiquetar(centroides);
+     // generar un proceso iterativo 
+     // que modifique o ajuste los centroides
+    
+     do {
+        // recalcular centroides
+        // necesitamos donde acumular 
+        Patron[] centroidesNuevos = new Patron[c];
+        int[] contadores = new int[c];
+        inicializarNuevosCentroides(centroidesNuevos);
+        // acumulamos(recorrer todas las instancias) 
+        for (Patron instancia: this.instancias){
+            String nombreCluster = instancia.getClase();
+            forCentroides: for (int x=0; x < centroidesNuevos.length;x++){
+             if (centroidesNuevos[x].getClase().equals(nombreCluster)){
+               centroidesNuevos[x].setVector(sumaVectores(centroidesNuevos[x].getVector(),instancia.getVector()));
+               contadores[x]++;
+               break forCentroides;
+             }
+            }
+        }
+        // agregar los centroides a la coleccion
+        this.centroides.add(centroidesNuevos);
+        // dividimos 
+        dividirUltimosCentroides(contadores);
+                
+        // re etiquetar 
+         etiquetar(this.centroides.get(this.centroides.size()-1));
+     }while (!verificaCentroides());
+        
      
+    
     }
     
     private void etiquetar (Patron[] centroides){
@@ -57,6 +88,39 @@ public class CMeans {
        }
        }
     }
+    }
+
+    private boolean verificaCentroides() {
+        // TODO 
+        return false;
+    }
+
+    
+    private void inicializarNuevosCentroides(Patron[] centroidesNuevos) {
+      // recorro el arreglo 
+      for (int x=0; x < centroidesNuevos.length;x++){
+        centroidesNuevos[x] = new Patron(new double[this.instancias.get(0).getVector().length],this.centroides.get(this.centroides.size()-1)[x].getClase());
+      }
+    }
+
+    private double[] sumaVectores(double[] vector, double[] vector0) {
+       double aux[] = new double[vector.length];
+       for (int x=0; x < aux.length;x++)
+           aux[x] = vector[x]+vector0[x];
+       
+       return aux;
+    }
+
+    private void dividirUltimosCentroides(int[] contadores) {
+        Patron[] aux = this.centroides.get(this.centroides.size()-1);
+        
+        for (int x=0; x < aux.length;x++){
+         double[] vector = aux[x].getVector();
+          for (int y=0;y<vector.length;y++){
+           vector[y]/=contadores[x];
+          }
+        }
+          
     }
     
     
