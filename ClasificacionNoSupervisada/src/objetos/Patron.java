@@ -91,6 +91,21 @@ public class Patron {
       return clase.equals(claseRes);
      
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Patron patron = (Patron)obj;
+        
+        for (int x=0; x<patron.getVector().length;x++){
+           if(this.vector[x]!=patron.getVector()[x])
+               return false;
+        
+        }
+        return true; 
+    }
+    
+    
+    
     
     
     

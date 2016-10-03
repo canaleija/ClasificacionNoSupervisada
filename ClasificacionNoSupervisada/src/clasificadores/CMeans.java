@@ -25,6 +25,7 @@ public class CMeans {
 
     public CMeans(ArrayList<Patron> instancias, int c) {
         this.instancias = instancias;
+        this.centroides = new ArrayList<>();
         this.c = c;
     }
    
@@ -85,14 +86,26 @@ public class CMeans {
        if (dist< menor){
        menor = dist;
        patron.setClase(centroides[x].getClase());
+       }else {
+       patron.setClase("Chocolate");
        }
+       
        }
     }
+    System.out.println();
     }
 
     private boolean verificaCentroides() {
-        // TODO 
-        return false;
+        // verificar si los centroides nuevos
+        // son iguales a los anteriores
+       int numCentroides = this.centroides.size();
+       Patron[] ultimo = this.centroides.get(numCentroides-1);
+       Patron[] penultimo = this.centroides.get(numCentroides-2);
+       for (int x=0; x < ultimo.length;x++){
+           if (!ultimo[x].equals(penultimo[x]))
+               return false;
+       }
+       return true;
     }
 
     
