@@ -22,7 +22,7 @@ public class CMeans {
     private int c;
     // centroides 
     private ArrayList<Patron[]> centroides;
-
+    int[] contadores;  
     public CMeans(ArrayList<Patron> instancias, int c) {
         this.instancias = instancias;
         this.centroides = new ArrayList<>();
@@ -43,12 +43,12 @@ public class CMeans {
      etiquetar(centroides);
      // generar un proceso iterativo 
      // que modifique o ajuste los centroides
-    
+     int aux = 0;
      do {
         // recalcular centroides
         // necesitamos donde acumular 
         Patron[] centroidesNuevos = new Patron[c];
-        int[] contadores = new int[c];
+        contadores = new int[c];
         inicializarNuevosCentroides(centroidesNuevos);
         // acumulamos(recorrer todas las instancias) 
         for (Patron instancia: this.instancias){
@@ -67,10 +67,10 @@ public class CMeans {
         dividirUltimosCentroides(contadores);
                 
         // re etiquetar 
-         etiquetar(this.centroides.get(this.centroides.size()-1));
+       etiquetar(this.centroides.get(this.centroides.size()-1));
+       System.out.println(++aux);
      }while (!verificaCentroides());
         
-     
     
     }
     
@@ -86,13 +86,11 @@ public class CMeans {
        if (dist< menor){
        menor = dist;
        patron.setClase(centroides[x].getClase());
-       }else {
-       patron.setClase("Chocolate");
        }
-       
        }
+      
     }
-    System.out.println();
+  
     }
 
     private boolean verificaCentroides() {
