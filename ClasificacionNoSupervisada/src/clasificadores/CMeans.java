@@ -38,12 +38,13 @@ public class CMeans {
        centroides[x] = new Patron(this.instancias.get(pos).getVector().clone(),"Centroide "+x);
      }
      // agregamos a la coleccion de centroides los centroides iniciales
-     this.centroides.add(centroides);
+     this.getCentroides().add(centroides);
      // etiquetar por primera ocasión (clasificar por primera ocasión)
      etiquetar(centroides);
      // generar un proceso iterativo 
      // que modifique o ajuste los centroides
-     int aux = 0;
+     int contador = 0;
+     
      do {
         // recalcular centroides
         // necesitamos donde acumular 
@@ -62,14 +63,15 @@ public class CMeans {
             }
         }
         // agregar los centroides a la coleccion
-        this.centroides.add(centroidesNuevos);
+        this.getCentroides().add(centroidesNuevos);
         // dividimos 
         dividirUltimosCentroides(contadores);
                 
         // re etiquetar 
-       etiquetar(this.centroides.get(this.centroides.size()-1));
-       System.out.println(++aux);
-     }while (!verificaCentroides());
+       etiquetar(this.getCentroides().get(this.getCentroides().size()-1));
+       System.out.println(contador++);
+      
+     }while (!verificaCentroides()&&contador<500);
         
     
     }
@@ -96,13 +98,14 @@ public class CMeans {
     private boolean verificaCentroides() {
         // verificar si los centroides nuevos
         // son iguales a los anteriores
-       int numCentroides = this.centroides.size();
-       Patron[] ultimo = this.centroides.get(numCentroides-1);
-       Patron[] penultimo = this.centroides.get(numCentroides-2);
+       int numCentroides = this.getCentroides().size();
+       Patron[] ultimo = this.getCentroides().get(numCentroides-1);
+       Patron[] penultimo = this.getCentroides().get(numCentroides-2);
        for (int x=0; x < ultimo.length;x++){
            if (!ultimo[x].equals(penultimo[x]))
                return false;
        }
+       System.out.println("Convergen los centroides!");
        return true;
     }
 
@@ -110,7 +113,7 @@ public class CMeans {
     private void inicializarNuevosCentroides(Patron[] centroidesNuevos) {
       // recorro el arreglo 
       for (int x=0; x < centroidesNuevos.length;x++){
-        centroidesNuevos[x] = new Patron(new double[this.instancias.get(0).getVector().length],this.centroides.get(this.centroides.size()-1)[x].getClase());
+        centroidesNuevos[x] = new Patron(new double[this.instancias.get(0).getVector().length],this.getCentroides().get(this.getCentroides().size()-1)[x].getClase());
       }
     }
 
@@ -123,7 +126,7 @@ public class CMeans {
     }
 
     private void dividirUltimosCentroides(int[] contadores) {
-        Patron[] aux = this.centroides.get(this.centroides.size()-1);
+        Patron[] aux = this.getCentroides().get(this.getCentroides().size()-1);
         
         for (int x=0; x < aux.length;x++){
          double[] vector = aux[x].getVector();
@@ -132,6 +135,13 @@ public class CMeans {
           }
         }
           
+    }
+
+    /**
+     * @return the centroides
+     */
+    public ArrayList<Patron[]> getCentroides() {
+        return centroides;
     }
     
     

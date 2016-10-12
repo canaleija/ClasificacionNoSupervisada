@@ -5,6 +5,7 @@
  */
 package clasificacionnosupervisada;
 
+import clasificadores.CMeans;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -29,11 +30,31 @@ public class ClusterAdapter {
         
         // generar las instancias que necesitará C-means
         ArrayList<Patron> instancias = generaInstancias();
-        // imagen resultante de la clusterización
-        BufferedImage imagenClusterizada = null;
-
+        
+        CMeans clasificador  = new CMeans(instancias, c);
+        clasificador.clasifica();
+        Patron[] centroidesUltimos = clasificador.getCentroides().get(clasificador.getCentroides().size()-1);
+        // vamos a modificar los valores de la instancias 
+        BufferedImage imagenClusterizada = 
+                new BufferedImage(this.imagenOriginal.getWidth(),
+                        this.imagenOriginal.getHeight(),BufferedImage.TYPE_INT_RGB);
+        //recorremos las instancias 
+        for (Patron patron: instancias){
+          String nombre = patron.getClase();
+          // recorremos los ultimos centroides
+          for(int y = 0; y < centroidesUltimos.length;y++){
+             if (nombre.equals(centroidesUltimos[y].getClase())){
+               // mandamos los valores al pixel de la imagen nueva
+               int rgb = centroidesUltimos[y].obtenerRGB();
+               imagenClusterizada.setRGB(patron.getX(), patron.getY(), rgb);
+             break;
+             }
+          
+          }
          
-        return this.imagenOriginal;
+        }
+              
+        return imagenClusterizada;
     }
 
  
@@ -47,7 +68,10 @@ public class ClusterAdapter {
             valores[0] = color.getRed();
             valores[1] = color.getGreen();
             valores[2] = color.getBlue();
-            instancias.add(new Patron(valores, "Desconocidos"));
+            Patron paux = new Patron(valores, "Desconocidos");
+            paux.setX(x);
+            paux.setY(y);
+            instancias.add(paux);
            }   
         
         return instancias;
