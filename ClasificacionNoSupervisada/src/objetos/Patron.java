@@ -33,6 +33,10 @@ public class Patron {
         this.x = -1;
         this.y = -1;
     }
+    public void setVector(double[] vector)
+    {
+        this.vector=vector;
+    }
 
     public Patron(double[] vector, String clase) {
         this.vector = vector;
@@ -59,9 +63,6 @@ public class Patron {
     /**
      * @param vector the vector to set
      */
-    public void setVector(double[] vector) {
-        this.vector = vector;
-    }
 
     /**
      * @return the clase

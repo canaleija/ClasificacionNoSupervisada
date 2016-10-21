@@ -80,11 +80,11 @@ public class CMeans {
     // recorrer las instancias y etiquetar 
     // cada una de ellas en base a distancias
     for (Patron patron: this.instancias){
-       double menor = Herramientas.calculaDistanciaEcuclidiana(patron,centroides[0]);
+       double menor = Herramientas.calculaDistanciaEuclidiana(patron,centroides[0]);
        patron.setClase(centroides[0].getClase());
        for (int x=1; x < this.c; x++){
        // calculamos distancias
-       double dist = Herramientas.calculaDistanciaEcuclidiana(patron,centroides[x]);
+       double dist = Herramientas.calculaDistanciaEuclidiana(patron,centroides[x]);
        if (dist< menor){
        menor = dist;
        patron.setClase(centroides[x].getClase());

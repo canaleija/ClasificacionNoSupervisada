@@ -12,7 +12,7 @@ package objetos;
  */
 public class Herramientas {
     
-    public static double calculaDistanciaEcuclidiana(Patron p1,Patron p2){
+    public static double calculaDistanciaEuclidiana(Patron p1,Patron p2){
      double acum = 0;
      
      for (int x=0;x < p1.getVector().length;x++){
