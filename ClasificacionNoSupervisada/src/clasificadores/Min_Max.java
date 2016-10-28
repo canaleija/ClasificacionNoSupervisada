@@ -165,6 +165,8 @@ public class Min_Max {
            nC =  aux.getClase();
          }
          
+         //systemout
+         
          }
         }
               
