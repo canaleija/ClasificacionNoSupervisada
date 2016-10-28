@@ -7,6 +7,7 @@ package clasificadores;
 
 import java.util.ArrayList;
 import objetos.Herramientas;
+
 import objetos.Patron;
 
 /**
@@ -28,7 +29,7 @@ public class Min_Max {
     public void clasifica(){
         // se definar los centroides iniciales 
         // se defina la media de los centroides iniciales (2)
-        encuentraCentroidesIniciales();
+        encuentra2CentroidesIniciales();
         int iM;
         ArrayList<Double> minimos;
         boolean nuevoC= false;
@@ -66,11 +67,17 @@ public class Min_Max {
         }else {
         nuevoC = false;
         }
-        
-        
+                
         }while(nuevoC);
-        
         // clasificamos por MD
+        // recorrer las instancias y clasificar cada una de ellas 
+       System.out.println("Clasificaión----");
+        for (Patron aux: this.instancias){
+          aux.setClase(clasificaMd(aux));
+          System.out.println(aux.getClase());
+        }
+       
+        System.out.println();
         
        
     }
@@ -81,7 +88,7 @@ public class Min_Max {
        
        return aux;
     }
-    private void encuentraCentroidesIniciales(){
+    private void encuentra2CentroidesIniciales(){
     
         Patron central=new Patron(this.instancias.get(0).getVector().length);
         // acumular cada vector en central
@@ -122,14 +129,45 @@ public class Min_Max {
         }
         Patron lejano2=new Patron(this.instancias.get(indice));
         this.instancias.remove(indice);
+        // asigno el nombre
+        lejano1.setClase("Cluster0");
+        System.out.println(lejano1.getClase());
+        lejano2.setClase("Cluster1");
+        System.out.println(lejano2.getClase());
         centroidesBase.add(lejano1);
         centroidesBase.add(lejano2);
         a=Herramientas.calculaDistanciaEuclidiana(centroidesBase.get(0),centroidesBase.get(1))/2;
     }
 
     private void crearNuevoCentroide(int iI) {
+        int id = this.centroidesBase.size();
         // agregamos el nuevo centroide
-        
+        Patron aux = new Patron(this.instancias.get(iI));
+        aux.setClase("Cluster"+id);
+        System.out.println(aux.getClase());
+        this.centroidesBase.add(aux);
         // eliminamos la instancia iI
+        this.instancias.remove(iI);
+        
+    }
+    
+    public String clasificaMd(Patron patron) {
+        String nC="";
+        if (this.centroidesBase.size()>0){
+        double distM = Herramientas.calculaDistanciaEuclidiana(patron, this.centroidesBase.get(0));
+        nC =  this.centroidesBase.get(0).getClase();
+        // recorrer todas las medias
+         for (Patron aux: this.centroidesBase){
+         // comparar distancias 
+         double distAux = Herramientas.calculaDistanciaEuclidiana(patron,aux);
+         if(distAux<distM){
+           distM = distAux;
+           nC =  aux.getClase();
+         }
+         
+         }
+        }
+              
+        return nC;
     }
 }
